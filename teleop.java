@@ -32,6 +32,9 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
     DcMotor frontLeft;
     DcMotor frontRight;
 
+    DcMotor intake;
+    DcMotor launch;
+    
     CRServo servo;
     
     @Override
@@ -42,6 +45,9 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
         frontRight = hardwareMap.dcMotor.get("frontRight");
         
         servo = hardwareMap.get(CRServo.class, "Josh");
+
+        intake = hardwareMap.dcMotor.get("intake");
+        launch = hardwareMap.dcMotor.get("launchyMcLaunchFace");
         
         DcMotor[] motors = {backLeft, backRight, frontLeft, frontRight};
         
@@ -58,13 +64,28 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
                 drivetrain.strafe(gamepad2.left_stick_x);
             } else if (Math.abs(gamepad2.left_stick_y) > Math.abs(gamepad2.left_stick_x)) {
                 drivetrain.driveForward(gamepad2.left_stick_y);
-            //} else if (Math.abs(gamepad2.left_stick_x) > 1.0 && Math.abs(gamepad2.left_stick_y) > 1.0) {
-            //    
-            } else if (Math.abs(gamepad2.right_stick_x) > 0) {
+            } else {
+                drivetrain.setPowerAll(0.0);
+            }
+            
+            if (Math.abs(gamepad2.right_stick_x) > 0) {
                 drivetrain.turn(gamepad2.right_stick_x);
             } else {
                 drivetrain.setPowerAll(0.0);
             }
+
+            if (gamepad2.right_trigger > 0.1) {
+                launch.setPower(1.0);
+            } else {
+                launch.setPower(0.0);
+            }
+
+            if (gamepade2.left_trigger > 0.1) {
+                intake.setPower(1.0);
+            } else {
+                intake.setPower(0.0);
+            }
+            
         }
     }
 }

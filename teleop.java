@@ -51,8 +51,7 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
         
         while (opModeIsActive()) {
             servo.setPower(1.0);
-            telemetry.addData("LStick x-axis", gamepad2.left_stick_x);
-            telemetry.update();
+            telemetry.addData("Servo", servo)
             
             if (Math.abs(gamepad2.left_stick_x) > Math.abs(gamepad2.left_stick_y)) {
                 drivetrain.strafe(gamepad2.left_stick_x);

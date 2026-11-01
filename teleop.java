@@ -32,7 +32,7 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
     DcMotor frontLeft;
     DcMotor frontRight;
 
-    Servo servo;
+    CRServo servo;
     
     @Override
     public void runOpMode() throws InterruptedException { 
@@ -40,7 +40,8 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
         backRight = hardwareMap.dcMotor.get("backRight");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
-        servo = hardwareMap.servo.get("Josh");
+        
+        servo = hardwareMap.get(CRServo.class, "Josh");
         
         DcMotor[] motors = {backLeft, backRight, frontLeft, frontRight};
         

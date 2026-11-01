@@ -31,6 +31,8 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
     DcMotor backRight;
     DcMotor frontLeft;
     DcMotor frontRight;
+
+    Servo servo;
     
     @Override
     public void runOpMode() throws InterruptedException { 
@@ -38,6 +40,7 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
         backRight = hardwareMap.dcMotor.get("backRight");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
+        servo = hardwareMap.servo.get("Josh");
         
         DcMotor[] motors = {backLeft, backRight, frontLeft, frontRight};
         
@@ -46,6 +49,7 @@ public class biobuzz_teleop_2026 extends LinearOpMode {
         waitForStart();
         
         while (opModeIsActive()) {
+            servo.setPower(1.0);
             telemetry.addData("LStick x-axis", gamepad2.left_stick_x);
             telemetry.update();
             
